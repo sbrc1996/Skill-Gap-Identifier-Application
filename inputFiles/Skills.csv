@@ -1,0 +1,8 @@
+﻿id,name,category
+S1,Java,Programming Language
+S2,Spring Boot,Backend Framework
+S3,SQL,Database
+S4,Python,Programming Language
+S5,React,Frontend Framework
+S6,Data Modelling,Data Engineering
+S7,AWS,Cloud
