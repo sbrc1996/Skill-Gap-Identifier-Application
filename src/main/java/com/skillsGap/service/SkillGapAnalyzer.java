@@ -22,7 +22,40 @@ public class SkillGapAnalyzer {
 
         List<SkillGapReport> reports = new ArrayList<>();
 
+        //Analyze Skill Gap per user
+        for(UserProfile user : users){
+            Map<String, Proficiency> userSkills = userSkillMap.get(user.getId());
+
+            List<Skill> metSkills = new ArrayList<>();
+            List<Skill> missingSkills = new ArrayList<>();
+            List<Skill> weakSkills = new ArrayList<>();
+
+            for(ExpectedSkill expected : expectedSkills){
+                String expectedSkillName = normalize(expected.getSkillName());
+                if(userSkills == null || !userSkills.containsKey(expectedSkillName)){
+                    missingSkills.add(toSkill(expected));
+                    continue;
+                }
+                Proficiency actual = userSkills.get(expectedSkillName);
+                if(actual.ordinal() >= expected.getLevel().ordinal()){
+                    metSkills.add(toSkill(expected));
+                }else{
+                    weakSkills.add(toSkill(expected));
+                }
+            }
+            SkillGapReport report = new SkillGapReport(user.getId(),metSkills,missingSkills,weakSkills);
+            reports.add(report);
+        }
+
         return reports;
+    }
+
+    private Skill toSkill(ExpectedSkill expected) {
+        return new Skill(expected.getSkillId(), expected.getSkillName(), expected.getCategory());
+    }
+
+    private String normalize(String value) {
+        return value == null ? "" : value.trim().toLowerCase();
     }
 
     private Map<String, String> buildSkillIdToNameMap(List<Skill> skills) {
@@ -33,29 +66,19 @@ public class SkillGapAnalyzer {
         return map;
     }
 
-    private String normalize(String value) {
-        return value == null ? "" : value.trim().toLowerCase();
-    }
+    private Map<String, Map<String, Proficiency>> buildUserSkillMap(List<UserProfileSkill> userProfileSkills,Map<String, String> skillIdToNameMap) {
+        Map<String, Map<String, Proficiency>> result = new HashMap<>();
 
-    private Map<String, Map<String, Proficiency>> buildUserSkillMap(List<UserProfileSkill> userProfileSkills) {
-        Map<String, Map<String, Proficiency>> map = new HashMap<>();
-
-        for(UserProfileSkill ups: userProfileSkills){
-            Map<String, Proficiency> skills = map.get(ups.getUserId());
-            if(skills == null){
-                skills = new HashMap<>();
-                map.put(ups.getUserId(),skills);
+        for(UserProfileSkill ups : userProfileSkills){
+            String skillName = skillIdToNameMap.get(ups.getSkillId());
+            if(skillName == null)   continue;
+            Map<String, Proficiency> userSkills = result.get(ups.getUserId());
+            if(userSkills == null){
+                userSkills = new HashMap<>();
+                result.put(ups.getUserId(),userSkills);
             }
-            skills.put(ups.getSkillId(),ups.getProficiency());
+            userSkills.put(skillName,ups.getProficiency());
         }
-        return map;
-    }
-
-    private Map<String, Skill> buildSkillLookup(List<Skill> skills) {
-        Map<String, Skill> lookup = new HashMap<>();
-        for(Skill skill : skills){
-            lookup.put(skill.getSkillId(),skill);
-        }
-        return lookup;
+        return result;
     }
 }
