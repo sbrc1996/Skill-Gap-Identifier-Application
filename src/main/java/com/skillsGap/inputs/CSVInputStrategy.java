@@ -1,9 +1,6 @@
 package com.skillsGap.inputs;
 
-import com.skillsGap.pojos.Proficiency;
-import com.skillsGap.pojos.Skill;
-import com.skillsGap.pojos.UserProfile;
-import com.skillsGap.pojos.UserProfileSkill;
+import com.skillsGap.pojos.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -108,5 +105,38 @@ public class CSVInputStrategy implements InputStrategy{
             throw new RuntimeException(e);
         }
         return userProfileSkillList;
+    }
+
+    @Override
+    public List<ExpectedSkill> readExpectedSkills(String filepath) {
+        List<ExpectedSkill> expectedSkillList = new ArrayList<>();
+        try{
+            File csv = new File(filepath);
+            if(csv.exists()){
+                BufferedReader br = new BufferedReader(new FileReader(csv));
+                String line;
+                int count = 0;
+
+                while((line = br.readLine()) != null){
+                    if(count == 0){
+                        count++;
+                        continue;
+                    }
+
+                    String[] data = line.split(",");
+                    String id = data[0];
+                    String name = data[1];
+                    String category = data[2];
+                    Proficiency level = Proficiency.valueOf(data[3].trim().toUpperCase());
+                    ExpectedSkill skill = new ExpectedSkill(id,name,category,level);
+                    expectedSkillList.add(skill);
+                    count++;
+                }
+                System.out.println("Total records read: "+expectedSkillList.size());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return expectedSkillList;
     }
 }

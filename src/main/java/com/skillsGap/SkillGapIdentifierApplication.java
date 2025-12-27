@@ -15,7 +15,7 @@ public class SkillGapIdentifierApplication {
         InputStrategy obj = InputStrategyFactory.getStrategy(InputType.CSV);
         System.out.println(obj.readUsers("inputFiles/UserProfile.csv"));
         System.out.println(obj.readSkills("inputFiles/Skills.csv"));
+        System.out.println(obj.readExpectedSkills("inputFiles/expected_skills.csv"));
         System.out.println(obj.readUserProfileSkills("inputFiles/userProfile_Skills.csv"));
-
 	}
 }
