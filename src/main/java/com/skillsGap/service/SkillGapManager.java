@@ -5,6 +5,8 @@ import com.skillsGap.factory.OutputReportStrategyFactory;
 import com.skillsGap.inputs.InputStrategy;
 import com.skillsGap.inputs.InputType;
 import com.skillsGap.observers.ConsoleUserNotifier;
+import com.skillsGap.observers.recommendationObserver.OllamaRecomendation;
+import com.skillsGap.observers.subject.OnlineCourseRecommendationPublisher;
 import com.skillsGap.observers.subject.SkillGapNotificationPublisher;
 import com.skillsGap.outputs.OutputType;
 import com.skillsGap.outputs.SkillGapReportStrategy;
@@ -49,5 +51,11 @@ public class SkillGapManager {
         SkillGapNotificationPublisher publisher = new SkillGapNotificationPublisher();
         publisher.addObserver(new ConsoleUserNotifier());
         publisher.notifyUsers(reports);
+
+        // -------- Online Course Recommendation Phase --------
+        System.out.println("-------- Online Course Recommendation Phase --------");
+        OnlineCourseRecommendationPublisher recommendor = new OnlineCourseRecommendationPublisher();
+        recommendor.addObserver(new OllamaRecomendation());
+        recommendor.notifyUsers(reports);
     }
 }

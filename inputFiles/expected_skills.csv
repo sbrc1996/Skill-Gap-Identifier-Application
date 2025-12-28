@@ -1,7 +1,5 @@
 id,name,category,required_proficiency
-S1,ML,AI,BEGINNER
-S2,NLP,AI,BEGINNER
-S3,LLM,AI,BEGINNER
-S4,Agents,AI,BEGINNER
-S5,AWS,Cloud,INTERMEDIATE
-S6,Azure,Cloud,INTERMEDIATE
+S1,LLM,AI,BEGINNER
+S2,Agents,AI,BEGINNER
+S3,AWS,Cloud,Beginner
+S4,Java,Programming Language,EXPERT

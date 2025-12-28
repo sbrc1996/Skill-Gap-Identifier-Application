@@ -1,18 +1,11 @@
 package com.skillsGap;
 
-import com.skillsGap.factory.InputStrategyFactory;
-import com.skillsGap.factory.OutputReportStrategyFactory;
-import com.skillsGap.inputs.InputStrategy;
 import com.skillsGap.inputs.InputType;
 import com.skillsGap.outputs.OutputType;
-import com.skillsGap.outputs.SkillGapReportStrategy;
 import com.skillsGap.pojos.*;
-import com.skillsGap.service.SkillGapAnalyzer;
 import com.skillsGap.service.SkillGapManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
 
 @SpringBootApplication
 public class SkillGapIdentifierApplication {
