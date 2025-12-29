@@ -1,4 +1,4 @@
-package com.skillsGap.observers.recommendationObserver;
+package com.skillsGap.observers.recommendation.consumer;
 
 import com.skillsGap.pojos.SkillGapReport;
 

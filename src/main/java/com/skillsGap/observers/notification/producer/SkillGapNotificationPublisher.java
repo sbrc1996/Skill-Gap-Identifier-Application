@@ -1,6 +1,6 @@
-package com.skillsGap.observers.subject;
+package com.skillsGap.observers.notification.producer;
 
-import com.skillsGap.observers.SkillGapObserver;
+import com.skillsGap.observers.notification.consumer.SkillGapObserver;
 import com.skillsGap.pojos.SkillGapReport;
 
 import java.util.ArrayList;

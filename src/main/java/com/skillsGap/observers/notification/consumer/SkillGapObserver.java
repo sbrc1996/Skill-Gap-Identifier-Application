@@ -1,4 +1,4 @@
-package com.skillsGap.observers;
+package com.skillsGap.observers.notification.consumer;
 
 import com.skillsGap.pojos.SkillGapReport;
 

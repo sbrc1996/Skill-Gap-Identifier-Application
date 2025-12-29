@@ -1,4 +1,4 @@
-package com.skillsGap.observers.recommendationObserver;
+package com.skillsGap.observers.recommendation.consumer;
 
 import com.skillsGap.pojos.Skill;
 import com.skillsGap.pojos.SkillGapReport;
@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class OllamaRecomendation implements RecommendationObserver{
+public class OllamaRecomendation implements RecommendationObserver {
     @Override
     public void notify(SkillGapReport report) {
         System.out.println("\n Recommendation for User: " + report.getUserId());

@@ -1,7 +1,6 @@
-package com.skillsGap.observers.subject;
+package com.skillsGap.observers.recommendation.producer;
 
-import com.skillsGap.observers.SkillGapObserver;
-import com.skillsGap.observers.recommendationObserver.RecommendationObserver;
+import com.skillsGap.observers.recommendation.consumer.RecommendationObserver;
 import com.skillsGap.pojos.SkillGapReport;
 
 import java.util.ArrayList;

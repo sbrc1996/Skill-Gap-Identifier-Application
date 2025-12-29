@@ -1,9 +1,9 @@
-package com.skillsGap.observers;
+package com.skillsGap.observers.notification.consumer;
 
 import com.skillsGap.pojos.Skill;
 import com.skillsGap.pojos.SkillGapReport;
 
-public class ConsoleUserNotifier implements SkillGapObserver{
+public class ConsoleUserNotifier implements SkillGapObserver {
     @Override
     public void notify(SkillGapReport report) {
         System.out.println("\n Notification for User: " + report.getUserId());
